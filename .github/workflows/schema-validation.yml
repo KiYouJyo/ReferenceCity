@@ -1,18 +1,23 @@
-name: Schema Validation
+name: Schema and Generator Validation
 
 on:
   push:
     paths:
       - 'schemas/**'
       - 'examples/**'
+      - 'data/core-v0.1/**'
+      - 'generators/**'
       - 'tools/validate_schemas.py'
+      - 'tools/test_core_generator.py'
       - 'requirements-dev.txt'
       - '.github/workflows/schema-validation.yml'
   pull_request:
     paths:
       - 'schemas/**'
       - 'examples/**'
-      - 'tools/validate_schemas.py'
+      - 'data/core-v0.1/**'
+      - 'generators/**'
+      - 'tools/**'
       - 'requirements-dev.txt'
 
 jobs:
@@ -25,3 +30,4 @@ jobs:
           python-version: '3.12'
       - run: pip install -r requirements-dev.txt
       - run: python tools/validate_schemas.py
+      - run: python tools/test_core_generator.py

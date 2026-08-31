@@ -1,0 +1,13 @@
+{
+  "dataset_version": "0.1.0",
+  "random_seed": 20260901,
+  "width_m": 20000,
+  "height_m": 20000,
+  "district_count": 3,
+  "towns_per_district": 2,
+  "parcel_columns": 10,
+  "parcel_rows": 6,
+  "buildings_per_parcel": 2,
+  "facility_interval_parcels": 5,
+  "crs_identifier": "RC-SYNTHETIC-1"
+}
