@@ -1,11 +1,11 @@
-name: Schema, Generator and Snapshot Validation
+name: ReferenceCity Validation
 
 on:
   push:
     paths:
       - 'schemas/**'
       - 'examples/**'
-      - 'data/core-v0.1/**'
+      - 'data/**'
       - 'generators/**'
       - 'tools/**'
       - 'requirements-dev.txt'
@@ -14,7 +14,7 @@ on:
     paths:
       - 'schemas/**'
       - 'examples/**'
-      - 'data/core-v0.1/**'
+      - 'data/**'
       - 'generators/**'
       - 'tools/**'
       - 'requirements-dev.txt'
@@ -31,6 +31,7 @@ jobs:
       - run: python tools/validate_schemas.py
       - run: python tools/test_core_generator.py
       - run: python tools/test_core_snapshot.py
+      - run: python tools/test_governance.py
       - run: python tools/build_snapshot.py --output build/core-v0.1
       - uses: actions/upload-artifact@v4
         with:

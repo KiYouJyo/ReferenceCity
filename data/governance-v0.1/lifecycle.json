@@ -1,0 +1,19 @@
+{
+  "lifecycle_id": "RC:LIFECYCLE:PLAN01",
+  "name": {"zh-Hans": "规划成果标准生命周期", "en": "Standard Planning Result Lifecycle", "ja": "計画成果標準ライフサイクル"},
+  "states": ["DRAFT", "SUBMITTED", "REVIEWED", "APPROVED", "EFFECTIVE", "AMENDMENT", "SUPERSEDED", "WITHDRAWN", "REJECTED"],
+  "initial_state": "DRAFT",
+  "terminal_states": ["SUPERSEDED", "WITHDRAWN", "REJECTED"],
+  "transitions": [
+    {"transition_id": "RC:TRANSITION:001", "from": "DRAFT", "to": "SUBMITTED", "operation": "SUBMIT_PLAN", "allowed_role_ids": ["RC:ROLE:PLANNER"], "requires_document": true, "requires_signature": true, "audit_event": "SUBMIT", "version_effect": "NONE"},
+    {"transition_id": "RC:TRANSITION:002", "from": "SUBMITTED", "to": "REVIEWED", "operation": "REVIEW_PASS", "allowed_role_ids": ["RC:ROLE:REVIEWER"], "requires_document": true, "requires_signature": true, "audit_event": "REVIEW", "version_effect": "NONE"},
+    {"transition_id": "RC:TRANSITION:003", "from": "SUBMITTED", "to": "DRAFT", "operation": "RETURN_PLAN", "allowed_role_ids": ["RC:ROLE:REVIEWER"], "requires_document": true, "requires_signature": true, "audit_event": "REVIEW", "version_effect": "NONE"},
+    {"transition_id": "RC:TRANSITION:004", "from": "SUBMITTED", "to": "REJECTED", "operation": "REJECT_PLAN", "allowed_role_ids": ["RC:ROLE:REVIEWER"], "requires_document": true, "requires_signature": true, "audit_event": "REJECT", "version_effect": "NONE"},
+    {"transition_id": "RC:TRANSITION:005", "from": "REVIEWED", "to": "APPROVED", "operation": "APPROVE_PLAN", "allowed_role_ids": ["RC:ROLE:APPROVER"], "requires_document": true, "requires_signature": true, "audit_event": "APPROVE", "version_effect": "NONE"},
+    {"transition_id": "RC:TRANSITION:006", "from": "APPROVED", "to": "EFFECTIVE", "operation": "ACTIVATE_PLAN", "allowed_role_ids": ["RC:ROLE:APPROVER"], "requires_document": true, "requires_signature": true, "audit_event": "ACTIVATE", "version_effect": "NONE"},
+    {"transition_id": "RC:TRANSITION:007", "from": "EFFECTIVE", "to": "AMENDMENT", "operation": "OPEN_AMENDMENT", "allowed_role_ids": ["RC:ROLE:PLANNER"], "requires_document": false, "requires_signature": true, "audit_event": "AMEND", "version_effect": "CREATE_VERSION"},
+    {"transition_id": "RC:TRANSITION:008", "from": "AMENDMENT", "to": "SUBMITTED", "operation": "SUBMIT_AMENDMENT", "allowed_role_ids": ["RC:ROLE:PLANNER"], "requires_document": true, "requires_signature": true, "audit_event": "SUBMIT", "version_effect": "INCREMENT_VERSION"},
+    {"transition_id": "RC:TRANSITION:009", "from": "EFFECTIVE", "to": "SUPERSEDED", "operation": "SUPERSEDE_PLAN", "allowed_role_ids": ["RC:ROLE:APPROVER"], "requires_document": true, "requires_signature": true, "audit_event": "SUPERSEDE", "version_effect": "SUPERSEDE_PREVIOUS"},
+    {"transition_id": "RC:TRANSITION:010", "from": "DRAFT", "to": "WITHDRAWN", "operation": "WITHDRAW_PLAN", "allowed_role_ids": ["RC:ROLE:PLANNER"], "requires_document": false, "requires_signature": true, "audit_event": "WITHDRAW", "version_effect": "NONE"}
+  ]
+}

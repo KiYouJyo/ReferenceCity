@@ -17,31 +17,27 @@
 
 ### Phase 1B：核心小城市 v0.1 — 进行中
 
-目标：建设一个可人工逐对象检查的核心城市，而不是追求规模。
-
 - [x] 冻结合成空间范围、规模与生成 seed；
 - [x] 建立确定性核心城市生成器；
 - [x] 建立对象数量、Schema 与重复生成 Hash 的自动测试；
 - [x] 建立三语核心城市 profile；
-- [ ] 冻结生成文件的 canonical serialization / release checksum；
-- [ ] 生成并审阅首个正式 core dataset snapshot；
-- [ ] 在 QGIS/GeoJSON 导出层人工检查空间关系。
+- [x] 引入 file SHA-256 与 RFC 8785 canonical SHA-256 双重内容指纹；
+- [x] 建立 snapshot descriptor 与 CI artifact；
+- [x] 建立 GeoJSON preview 与自动拓扑/父子关系检查；
+- [ ] 提交并强制校验 `release-lock.json`；
+- [ ] 完成首个正式 core dataset snapshot 人工 GIS 审阅。
 
-基准规模：1 city、3 district-level units、6 town/subdistrict units、60 parcels、120 buildings、18 road segments、1 synthetic river、12 facilities，以及一套简化但内部一致的规划控制数据。
+### Phase 1C：规划治理模型 v0.1 — 进行中
 
-### Phase 1C：规划治理模型 v0.1
-
-建立规划编制机构、审批主体、区级/市级管理角色、建设/申请主体、权限矩阵、Plan / PlanVersion / PlanningDocument / Approval 与生命周期状态机。
-
-首个标准生命周期：
-
-```text
-Draft → Submitted → Reviewed → Approved → Effective
-                                      ↓
-                                  Amendment
-                                      ↓
-                               New Effective Version
-```
+- [x] 建立 5 个虚构组织；
+- [x] 建立 PLANNER / REVIEWER / APPROVER / DISTRICT_MANAGER / APPLICANT / AUDITOR 六类角色；
+- [x] 建立 6 个合成 actor；
+- [x] 建立机器可读权限矩阵；
+- [x] 建立规划成果生命周期 Schema；
+- [x] 建立 DRAFT → SUBMITTED → REVIEWED → APPROVED → EFFECTIVE 主路径及退回、拒绝、撤回、调整、废止路径；
+- [x] 建立权限—状态迁移一致性自动测试；
+- [ ] 加入 PlanningDocument / Approval / signature fixtures；
+- [ ] 加入版本前置条件与并发更新规则。
 
 ### Phase 1D：Benchmark Scenarios v0.1
 

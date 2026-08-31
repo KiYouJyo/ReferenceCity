@@ -1,0 +1,123 @@
+[
+  {
+    "id": "RC:ORG:001",
+    "entity_type": "organization",
+    "name": {"zh-Hans": "参考城市人民政府", "en": "Reference City Municipal Government", "ja": "リファレンスシティ市政府"},
+    "organization_type": "municipal_government",
+    "metadata": {"synthetic": true}
+  },
+  {
+    "id": "RC:ORG:002",
+    "entity_type": "organization",
+    "name": {"zh-Hans": "参考城市自然资源主管部门", "en": "Reference City Natural Resources Authority", "ja": "リファレンスシティ自然資源主管部門"},
+    "organization_type": "municipal_natural_resources_authority",
+    "metadata": {"synthetic": true}
+  },
+  {
+    "id": "RC:ORG:003",
+    "entity_type": "organization",
+    "name": {"zh-Hans": "参考城市规划研究院", "en": "Reference City Planning Institute", "ja": "リファレンスシティ計画研究院"},
+    "organization_type": "planning_institute",
+    "metadata": {"synthetic": true}
+  },
+  {
+    "id": "RC:ORG:004",
+    "entity_type": "organization",
+    "name": {"zh-Hans": "参考城市第一区管理机构", "en": "Reference City District 1 Authority", "ja": "リファレンスシティ第1区管理機関"},
+    "organization_type": "district_authority",
+    "metadata": {"synthetic": true, "scope_id": "RC:DISTRICT:001"}
+  },
+  {
+    "id": "RC:ORG:005",
+    "entity_type": "organization",
+    "name": {"zh-Hans": "参考建设申请单位", "en": "Reference Development Applicant", "ja": "リファレンス開発申請主体"},
+    "organization_type": "development_applicant",
+    "metadata": {"synthetic": true}
+  },
+  {
+    "id": "RC:ROLE:PLANNER",
+    "entity_type": "role",
+    "name": {"zh-Hans": "规划编制者", "en": "Planning Author", "ja": "計画作成者"}
+  },
+  {
+    "id": "RC:ROLE:REVIEWER",
+    "entity_type": "role",
+    "name": {"zh-Hans": "规划审查者", "en": "Planning Reviewer", "ja": "計画審査者"}
+  },
+  {
+    "id": "RC:ROLE:APPROVER",
+    "entity_type": "role",
+    "name": {"zh-Hans": "规划批准者", "en": "Planning Approver", "ja": "計画承認者"}
+  },
+  {
+    "id": "RC:ROLE:DISTRICT_MANAGER",
+    "entity_type": "role",
+    "name": {"zh-Hans": "区级管理者", "en": "District Manager", "ja": "区級管理者"}
+  },
+  {
+    "id": "RC:ROLE:APPLICANT",
+    "entity_type": "role",
+    "name": {"zh-Hans": "建设申请者", "en": "Development Applicant", "ja": "開発申請者"}
+  },
+  {
+    "id": "RC:ROLE:AUDITOR",
+    "entity_type": "role",
+    "name": {"zh-Hans": "审计验证者", "en": "Audit Verifier", "ja": "監査検証者"}
+  },
+  {
+    "id": "RC:ACTOR:001",
+    "entity_type": "actor",
+    "name": {"zh-Hans": "规划员甲", "en": "Planner A", "ja": "計画担当 A"},
+    "organization_id": "RC:ORG:003",
+    "role_id": "RC:ROLE:PLANNER"
+  },
+  {
+    "id": "RC:ACTOR:002",
+    "entity_type": "actor",
+    "name": {"zh-Hans": "审查员甲", "en": "Reviewer A", "ja": "審査担当 A"},
+    "organization_id": "RC:ORG:002",
+    "role_id": "RC:ROLE:REVIEWER"
+  },
+  {
+    "id": "RC:ACTOR:003",
+    "entity_type": "actor",
+    "name": {"zh-Hans": "批准人甲", "en": "Approver A", "ja": "承認担当 A"},
+    "organization_id": "RC:ORG:001",
+    "role_id": "RC:ROLE:APPROVER"
+  },
+  {
+    "id": "RC:ACTOR:004",
+    "entity_type": "actor",
+    "name": {"zh-Hans": "第一区管理员甲", "en": "District 1 Manager A", "ja": "第1区管理担当 A"},
+    "organization_id": "RC:ORG:004",
+    "role_id": "RC:ROLE:DISTRICT_MANAGER"
+  },
+  {
+    "id": "RC:ACTOR:005",
+    "entity_type": "actor",
+    "name": {"zh-Hans": "申请人甲", "en": "Applicant A", "ja": "申請担当 A"},
+    "organization_id": "RC:ORG:005",
+    "role_id": "RC:ROLE:APPLICANT"
+  },
+  {
+    "id": "RC:ACTOR:006",
+    "entity_type": "actor",
+    "name": {"zh-Hans": "审计员甲", "en": "Auditor A", "ja": "監査担当 A"},
+    "organization_id": "RC:ORG:002",
+    "role_id": "RC:ROLE:AUDITOR"
+  },
+  {"id": "RC:PERMISSION:001", "entity_type": "permission", "role_id": "RC:ROLE:PLANNER", "operation": "CREATE_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:002", "entity_type": "permission", "role_id": "RC:ROLE:PLANNER", "operation": "SUBMIT_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:003", "entity_type": "permission", "role_id": "RC:ROLE:PLANNER", "operation": "OPEN_AMENDMENT", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:004", "entity_type": "permission", "role_id": "RC:ROLE:PLANNER", "operation": "SUBMIT_AMENDMENT", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:005", "entity_type": "permission", "role_id": "RC:ROLE:PLANNER", "operation": "WITHDRAW_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:006", "entity_type": "permission", "role_id": "RC:ROLE:REVIEWER", "operation": "REVIEW_PASS", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:007", "entity_type": "permission", "role_id": "RC:ROLE:REVIEWER", "operation": "RETURN_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:008", "entity_type": "permission", "role_id": "RC:ROLE:REVIEWER", "operation": "REJECT_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:009", "entity_type": "permission", "role_id": "RC:ROLE:APPROVER", "operation": "APPROVE_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:010", "entity_type": "permission", "role_id": "RC:ROLE:APPROVER", "operation": "ACTIVATE_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:011", "entity_type": "permission", "role_id": "RC:ROLE:APPROVER", "operation": "SUPERSEDE_PLAN", "resource_type": "plan", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:012", "entity_type": "permission", "role_id": "RC:ROLE:DISTRICT_MANAGER", "operation": "REVIEW_DISTRICT_CONTROL", "resource_type": "development_control", "scope_ids": ["RC:DISTRICT:001"]},
+  {"id": "RC:PERMISSION:013", "entity_type": "permission", "role_id": "RC:ROLE:APPLICANT", "operation": "SUBMIT_PROJECT_APPLICATION", "resource_type": "parcel", "scope_ids": ["RC:CITY:001"]},
+  {"id": "RC:PERMISSION:014", "entity_type": "permission", "role_id": "RC:ROLE:AUDITOR", "operation": "VERIFY", "resource_type": "*", "scope_ids": ["RC:CITY:001"]}
+]

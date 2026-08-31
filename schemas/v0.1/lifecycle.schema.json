@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/lifecycle.schema.json",
+  "title": "ReferenceCity Planning Lifecycle v0.1",
+  "type": "object",
+  "required": ["lifecycle_id", "name", "states", "initial_state", "terminal_states", "transitions"],
+  "properties": {
+    "lifecycle_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "name": { "$ref": "common.schema.json#/$defs/localizedText" },
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["DRAFT", "SUBMITTED", "REVIEWED", "APPROVED", "EFFECTIVE", "AMENDMENT", "SUPERSEDED", "WITHDRAWN", "REJECTED"] }
+    },
+    "initial_state": { "type": "string" },
+    "terminal_states": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "transitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["transition_id", "from", "to", "operation", "allowed_role_ids", "requires_document", "requires_signature", "audit_event"],
+        "properties": {
+          "transition_id": { "$ref": "common.schema.json#/$defs/stableId" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "operation": { "type": "string", "minLength": 1 },
+          "allowed_role_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/stableId" } },
+          "requires_document": { "type": "boolean" },
+          "requires_signature": { "type": "boolean" },
+          "audit_event": { "type": "string", "minLength": 1 },
+          "version_effect": { "enum": ["NONE", "CREATE_VERSION", "INCREMENT_VERSION", "SUPERSEDE_PREVIOUS"] }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
