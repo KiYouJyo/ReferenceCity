@@ -1,4 +1,4 @@
-name: Schema and Generator Validation
+name: Schema, Generator and Snapshot Validation
 
 on:
   push:
@@ -7,8 +7,7 @@ on:
       - 'examples/**'
       - 'data/core-v0.1/**'
       - 'generators/**'
-      - 'tools/validate_schemas.py'
-      - 'tools/test_core_generator.py'
+      - 'tools/**'
       - 'requirements-dev.txt'
       - '.github/workflows/schema-validation.yml'
   pull_request:
@@ -31,3 +30,10 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - run: python tools/validate_schemas.py
       - run: python tools/test_core_generator.py
+      - run: python tools/test_core_snapshot.py
+      - run: python tools/build_snapshot.py --output build/core-v0.1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: referencecity-core-v0.1
+          path: build/core-v0.1
+          if-no-files-found: error
