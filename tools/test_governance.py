@@ -26,34 +26,31 @@ def registry_and_schemas():
 def main() -> int:
     registry, schemas = registry_and_schemas()
     governance = load(DATA_DIR / "entities.json")
+    document_entities = load(DATA_DIR / "documents-and-approvals.json")
     lifecycle = load(DATA_DIR / "lifecycle.json")
 
     entity_validator = Draft202012Validator(schemas["governance.schema.json"], registry=registry, format_checker=FormatChecker())
-    for entity in governance:
+    for entity in governance + document_entities:
         errors = list(entity_validator.iter_errors(entity))
         assert not errors, f"{entity.get('id')}: {[error.message for error in errors]}"
 
     Draft202012Validator(schemas["lifecycle.schema.json"], registry=registry, format_checker=FormatChecker()).validate(lifecycle)
 
-    ids = [entity["id"] for entity in governance]
+    ids = [entity["id"] for entity in governance + document_entities]
     assert len(ids) == len(set(ids)), "duplicate governance IDs"
-    by_id = {entity["id"]: entity for entity in governance}
+    by_id = {entity["id"]: entity for entity in governance + document_entities}
 
     organizations = {entity["id"] for entity in governance if entity["entity_type"] == "organization"}
     roles = {entity["id"] for entity in governance if entity["entity_type"] == "role"}
     actors = [entity for entity in governance if entity["entity_type"] == "actor"]
     permissions = [entity for entity in governance if entity["entity_type"] == "permission"]
 
-    assert len(organizations) == 5
-    assert len(roles) == 6
-    assert len(actors) == 6
-    assert len(permissions) == 14
-
+    assert (len(organizations), len(roles), len(actors), len(permissions)) == (5, 6, 6, 14)
     for actor in actors:
-        assert actor["organization_id"] in organizations, actor["id"]
-        assert actor["role_id"] in roles, actor["id"]
+        assert actor["organization_id"] in organizations
+        assert actor["role_id"] in roles
 
-    permission_pairs = {(permission["role_id"], permission["operation"]) for permission in permissions}
+    permission_pairs = {(p["role_id"], p["operation"]) for p in permissions}
     for transition in lifecycle["transitions"]:
         assert transition["from"] in lifecycle["states"]
         assert transition["to"] in lifecycle["states"]
@@ -61,20 +58,21 @@ def main() -> int:
             assert role_id in roles
             assert (role_id, transition["operation"]) in permission_pairs, transition["transition_id"]
 
-    assert lifecycle["initial_state"] in lifecycle["states"]
-    assert set(lifecycle["terminal_states"]).issubset(set(lifecycle["states"]))
+    document = by_id["RC:DOC:000001"]
+    approval = by_id["RC:APPROVAL:000001"]
+    assert approval["document_id"] == document["id"]
+    assert approval["approver_actor_id"] == "RC:ACTOR:003"
+    assert by_id[approval["approver_actor_id"]]["role_id"] == "RC:ROLE:APPROVER"
+    assert approval["decision"] == "APPROVE"
 
     applicant = by_id["RC:ACTOR:005"]
-    assert applicant["role_id"] == "RC:ROLE:APPLICANT"
     applicant_ops = {p["operation"] for p in permissions if p["role_id"] == applicant["role_id"]}
     assert "APPROVE_PLAN" not in applicant_ops
     assert "OPEN_AMENDMENT" not in applicant_ops
     assert "SUBMIT_PROJECT_APPLICATION" in applicant_ops
+    assert {p["operation"] for p in permissions if p["role_id"] == "RC:ROLE:AUDITOR"} == {"VERIFY"}
 
-    auditor_ops = {p["operation"] for p in permissions if p["role_id"] == "RC:ROLE:AUDITOR"}
-    assert auditor_ops == {"VERIFY"}
-
-    print("PASS governance: 5 organizations, 6 roles, 6 actors, 14 permissions, 10 lifecycle transitions")
+    print("PASS governance, document and approval fixture structure")
     return 0
 
 

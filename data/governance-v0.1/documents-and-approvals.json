@@ -1,0 +1,28 @@
+[
+  {
+    "id": "RC:DOC:000001",
+    "entity_type": "planning_document",
+    "document_type": "planning_submission",
+    "document_status": "APPROVED",
+    "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "metadata": {
+      "content_path": "data/governance-v0.1/documents/plan-v1-submission.json",
+      "plan_id": "RC:PLAN:0001",
+      "plan_version_id": "RC:PLANVER:0001",
+      "synthetic": true
+    }
+  },
+  {
+    "id": "RC:APPROVAL:000001",
+    "entity_type": "approval",
+    "document_id": "RC:DOC:000001",
+    "approver_actor_id": "RC:ACTOR:003",
+    "decision": "APPROVE",
+    "decided_at": "2030-02-15T10:00:00+08:00",
+    "signature_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+    "metadata": {
+      "signature_fixture": "synthetic_presence_only_v0.1",
+      "synthetic": true
+    }
+  }
+]

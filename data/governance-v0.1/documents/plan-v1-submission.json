@@ -1,0 +1,17 @@
+{
+  "document_id": "RC:DOC:000001",
+  "plan_id": "RC:PLAN:0001",
+  "plan_version_id": "RC:PLANVER:0001",
+  "document_type": "planning_submission",
+  "title": {
+    "zh-Hans": "参考城国土空间规划基准版本报审成果",
+    "en": "Reference City Territorial Spatial Plan Baseline Submission",
+    "ja": "リファレンスシティ国土空間計画基準版提出成果"
+  },
+  "submitted_by": "RC:ACTOR:001",
+  "submitted_at": "2030-02-01T09:00:00+08:00",
+  "summary": {
+    "parcel_controls": 60,
+    "controlled_boundaries": 3
+  }
+}
