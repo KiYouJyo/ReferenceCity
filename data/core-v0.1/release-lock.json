@@ -1,0 +1,53 @@
+{
+  "snapshot_id": "RC:DATASET:COREV01SNAPSHOT",
+  "dataset_version": "0.1.0",
+  "schema_version": "0.1",
+  "generator": {
+    "path": "generators/core_city.py",
+    "sha256": "sha256:30afe9d82a86418f57e6751a38fa4f4a17680dc81680fb896af69622a8b55056"
+  },
+  "config": {
+    "path": "data/core-v0.1/config.json",
+    "sha256": "sha256:3d536e55d35212dd0735af8d1c92c6fddaec73d570daa7795f30da76063a719e",
+    "random_seed": 20260901
+  },
+  "counts": {
+    "spatial_objects": 221,
+    "planning_objects": 65,
+    "by_spatial_type": {
+      "building": 120,
+      "city": 1,
+      "district": 3,
+      "facility": 12,
+      "parcel": 60,
+      "road_segment": 18,
+      "subdistrict_or_town": 6,
+      "waterbody": 1
+    }
+  },
+  "assets": [
+    {
+      "path": "spatial-objects.json",
+      "file_sha256": "sha256:4ab70e00309bd457e25fb4534b9e4d4cf2994083759939d625497c2abfc2b574",
+      "canonical_sha256": "sha256:f72a47524c4d14dbd07a536f3ec84fa463f82e71827cbdab74ea146c881cab91",
+      "media_type": "application/json"
+    },
+    {
+      "path": "planning-objects.json",
+      "file_sha256": "sha256:2d860cdea1233709a8baa4711865ba348e50a6a611fe51e8c52e5440d68d4738",
+      "canonical_sha256": "sha256:ad2760711d5cbd713b0f92340aa5d6158a42340dd4273ea9cb4e7bfeb4232f45",
+      "media_type": "application/json"
+    },
+    {
+      "path": "manifest.json",
+      "file_sha256": "sha256:c1faee02d51e5a0e21a038c487bee83f7ee4412006d3762f2f7e784d5948502d",
+      "canonical_sha256": "sha256:3a829cb0f01354f12881ac226379b91a38c55ae931977662d82fa18f5b85e9d6",
+      "media_type": "application/json"
+    },
+    {
+      "path": "spatial-preview.geojson",
+      "file_sha256": "sha256:e83ab20cc2a4c2fdbe3460558fe46df429c303f029e695e2a7efb076dd8f3d69",
+      "media_type": "application/geo+json"
+    }
+  ]
+}
