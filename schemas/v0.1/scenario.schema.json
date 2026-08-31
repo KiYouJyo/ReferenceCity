@@ -1,37 +1,17 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/scenario.schema.json",
-  "title": "ReferenceCity Benchmark Scenario v0.1",
-  "type": "object",
-  "required": ["scenario_id", "title", "description", "fixtures", "actions", "expected_result_ref"],
-  "properties": {
-    "scenario_id": { "$ref": "common.schema.json#/$defs/stableId" },
-    "title": { "$ref": "common.schema.json#/$defs/localizedText" },
-    "description": { "$ref": "common.schema.json#/$defs/localizedText" },
-    "fixtures": {
-      "type": "array",
-      "items": { "type": "string", "minLength": 1 },
-      "uniqueItems": true
-    },
-    "actions": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "object",
-        "required": ["step", "actor_id", "operation", "target_id", "occurred_at"],
-        "properties": {
-          "step": { "type": "integer", "minimum": 1 },
-          "actor_id": { "$ref": "common.schema.json#/$defs/stableId" },
-          "operation": { "type": "string", "minLength": 1 },
-          "target_id": { "$ref": "common.schema.json#/$defs/stableId" },
-          "occurred_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
-          "parameters": { "type": "object" }
-        },
-        "additionalProperties": false
-      }
-    },
-    "expected_result_ref": { "type": "string", "minLength": 1 },
-    "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/scenario.schema.json",
+  "title":"ReferenceCity Benchmark Scenario v0.1",
+  "type":"object",
+  "required":["scenario_id","title","description","fixtures","actions","expected_result_ref"],
+  "properties":{
+    "scenario_id":{"$ref":"common.schema.json#/$defs/stableId"},
+    "title":{"$ref":"common.schema.json#/$defs/localizedText"},
+    "description":{"$ref":"common.schema.json#/$defs/localizedText"},
+    "fixtures":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},
+    "actions":{"type":"array","minItems":1,"items":{"type":"object","required":["step","actor_id","operation","target_id","occurred_at","request_ref"],"properties":{"step":{"type":"integer","minimum":1},"actor_id":{"$ref":"common.schema.json#/$defs/stableId"},"operation":{"type":"string","minLength":1},"target_id":{"$ref":"common.schema.json#/$defs/stableId"},"occurred_at":{"$ref":"common.schema.json#/$defs/isoDateTime"},"request_ref":{"type":"string","minLength":1},"parameters":{"type":"object"}},"additionalProperties":false}},
+    "expected_result_ref":{"type":"string","minLength":1},
+    "tags":{"type":"array","items":{"type":"string"},"uniqueItems":true}
   },
-  "additionalProperties": false
+  "additionalProperties":false
 }

@@ -1,0 +1,1 @@
+{"request_id":"RC:REQUEST:S006","actor_id":"RC:ACTOR:001","operation":"OPEN_AMENDMENT","target_id":"RC:PLAN:0001","expected_version":1,"occurred_at":"2030-03-06T09:00:00+08:00","related_document_ids":[],"payload":{"proposed_land_use":"R2"},"payload_hash":"sha256:7dc927703106ca10881c41ab52fe22e4f748ff28bf54151a3e493e2fb9b75d99"}

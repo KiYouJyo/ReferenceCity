@@ -1,76 +1,20 @@
 {
-  "model": "optimistic_concurrency",
-  "version_field": "version",
-  "request_version_field": "expected_version",
-  "precondition_order": [
-    "REQUEST_ID",
-    "TARGET_EXISTS",
-    "VERSION",
-    "AUTHORIZATION",
-    "STATE_TRANSITION",
-    "DOCUMENT",
-    "SIGNATURE",
-    "HASH",
-    "SPATIAL_CONSTRAINTS"
+  "model":"optimistic_concurrency",
+  "version_field":"version",
+  "request_version_field":"expected_version",
+  "create_semantics":{"expected_version":null,"resulting_version":1},
+  "precondition_order":["REQUEST_ID","TARGET_EXISTS_OR_CREATE","VERSION","AUTHORIZATION","STATE_TRANSITION","DOCUMENT","SIGNATURE","HASH","SPATIAL_CONSTRAINTS"],
+  "rules":[
+    {"code":"VERSION_CONFLICT","condition":"expected_version != current_version for an existing versioned target","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"UNAUTHORIZED","condition":"actor role/scope does not permit operation","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"INVALID_STATE_TRANSITION","condition":"operation is not valid from current lifecycle state","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"MISSING_DOCUMENT","condition":"transition requires document but required document is absent","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"MISSING_SIGNATURE","condition":"transition requires signature but signature proof is absent","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"HASH_MISMATCH","condition":"provided or stored content hash does not match canonical content","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"PLANNING_CONSTRAINT_CONFLICT","condition":"proposed planning control conflicts with an effective higher-order planning constraint","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"SPATIAL_CONFLICT","condition":"proposed project geometry conflicts with an effective controlled boundary","accepted":false,"state_changed":false,"audit_required":true},
+    {"code":"REQUEST_ID_REUSE","condition":"same request_id is reused with a different canonical payload hash","accepted":false,"state_changed":false,"audit_required":true}
   ],
-  "rules": [
-    {
-      "code": "VERSION_CONFLICT",
-      "condition": "expected_version != current_version",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    },
-    {
-      "code": "UNAUTHORIZED",
-      "condition": "actor role/scope does not permit operation",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    },
-    {
-      "code": "INVALID_STATE_TRANSITION",
-      "condition": "operation is not valid from current lifecycle state",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    },
-    {
-      "code": "MISSING_DOCUMENT",
-      "condition": "transition requires document but required document is absent",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    },
-    {
-      "code": "MISSING_SIGNATURE",
-      "condition": "transition requires signature but signature proof is absent",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    },
-    {
-      "code": "HASH_MISMATCH",
-      "condition": "provided content hash does not match canonical content",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    },
-    {
-      "code": "REQUEST_ID_REUSE",
-      "condition": "same request_id is reused with a different canonical payload hash",
-      "accepted": false,
-      "state_changed": false,
-      "audit_required": true
-    }
-  ],
-  "idempotency": {
-    "same_request_same_payload": "RETURN_ORIGINAL_RESULT",
-    "same_request_different_payload": "REQUEST_ID_REUSE"
-  },
-  "success": {
-    "accepted": true,
-    "state_changed": true,
-    "version_rule": "apply lifecycle version_effect and persist audit event atomically"
-  }
+  "idempotency":{"same_request_same_payload":"RETURN_ORIGINAL_RESULT","same_request_different_payload":"REQUEST_ID_REUSE"},
+  "success":{"accepted":true,"state_changed":true,"version_rule":"apply lifecycle version_effect and persist audit event atomically"}
 }

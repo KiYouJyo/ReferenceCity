@@ -1,0 +1,1 @@
+{"scenario_id":"RC:SCENARIO:S003","authorized":true,"accepted":true,"state_changed":true,"expected_state_version":1,"expected_error_code":null,"expected_audit_event":"ACTIVATE","expected_hash_match":true,"expected_spatial_conflicts":[],"notes":{"zh-Hans":"最终状态为 EFFECTIVE。","en":"The final lifecycle state is EFFECTIVE.","ja":"最終状態は EFFECTIVE となる。"}}

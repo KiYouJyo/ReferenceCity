@@ -1,0 +1,1 @@
+{"request_id":"RC:REQUEST:S009","actor_id":"RC:ACTOR:006","operation":"VERIFY","target_id":"RC:PLAN:0001","expected_version":1,"occurred_at":"2030-03-09T09:00:00+08:00","related_document_ids":["RC:DOC:000001"],"payload":{"version":1},"payload_hash":"sha256:2430f1a2ad2982d0067885488a4c89e21ad1d7c83b115ba8f1b20acc88dfaea8"}

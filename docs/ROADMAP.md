@@ -4,32 +4,41 @@
 
 ## Phase 1 — 国土空间可信链基准城市
 
-### Phase 1A：文本、Schema 与最小骨架 — 完成
-- [x] 三语项目主页、核心数据域、Schema v0.1、稳定 ID、时间/单位、provenance/sensitivity 与自动校验。
+### Phase 1A — 完成
+三语基础、核心数据域、Schema v0.1、稳定 ID、时间/单位、provenance/sensitivity 与自动校验均已建立。
 
-### Phase 1B：核心小城市 v0.1 — 工程冻结
-- [x] 20 km × 20 km 合成城市、seed 与确定性生成器；
+### Phase 1B — 工程冻结
+- [x] 20 km × 20 km 合成城市、确定性生成器与 seed；
 - [x] 221 spatial + 65 planning objects；
 - [x] file SHA-256 + RFC 8785 canonical SHA-256；
-- [x] snapshot descriptor、GeoJSON preview、拓扑检查与 CI artifact；
-- [x] `release-lock.json` 强制逐字段校验；
+- [x] snapshot descriptor、GeoJSON preview、拓扑检查、CI artifact；
+- [x] `release-lock.json` 强制校验；
 - [ ] 人工 GIS 视觉审阅（不阻塞后续开发）。
 
-### Phase 1C：规划治理模型 v0.1 — 接近完成
-- [x] 5 个虚构组织、6 类角色、6 个 actor、14 条权限；
-- [x] 生命周期 Schema 与 10 个状态迁移；
-- [x] 权限—状态迁移一致性自动测试；
-- [x] PlanningDocument / Approval / synthetic signature presence fixtures；
-- [x] `expected_version` 乐观并发控制与事务失败错误码；
-- [x] request idempotency 规则；
-- [ ] 冻结 PlanningDocument canonical content hash；
-- [ ] 将操作请求 fixture 接入 S001–S010。
+### Phase 1C — 工程完成
+- [x] 5 个组织、6 类角色、6 actor、权限矩阵；
+- [x] 生命周期 Schema 与状态迁移；
+- [x] PlanningDocument / Approval / synthetic signature fixture；
+- [x] PlanningDocument RFC 8785 canonical Hash 校验；
+- [x] `expected_version` 乐观并发、request idempotency 与稳定错误码。
 
-### Phase 1D：Benchmark Scenarios v0.1
-建立 S001–S010：正常登记、合法版本更新、正常审批生效、无权限修改、批准文档篡改、规划约束冲突、跨受控边界、缺少审批/签名、历史版本验证、冲突更新。每个场景必须同时具有 `input` 与 `expected`。
+### Phase 1D — Benchmark Scenarios v0.1 — 已建立首版
+- [x] S001 正常规划成果登记；
+- [x] S002 合法版本更新；
+- [x] S003 正常审批并生效；
+- [x] S004 无权限主体修改；
+- [x] S005 已批准文档篡改；
+- [x] S006 规划约束冲突；
+- [x] S007 项目跨越受控边界；
+- [x] S008 缺少必要签名；
+- [x] S009 历史版本验证；
+- [x] S010 冲突更新；
+- [x] 每个场景具有 operation request 与机器可读 Ground Truth；
+- [x] CI 校验 scenario/request/expected Schema、步骤对应关系与 payload canonical Hash；
+- [ ] 建立实现无关的 benchmark runner / adapter contract。
 
-### Phase 1E：Trust Chain 对接与回归
-链只消费公开 Schema/fixture；执行输出与 Ground Truth 比较；固定 ReferenceCity v1.0；性能测试与核心正确性测试分离。
+### Phase 1E — Trust Chain 对接与回归
+下一步定义链适配器输入/输出协议，使任意实现只要实现 adapter contract 即可执行 S001–S010，并将 observed result 与 Ground Truth 自动比较。
 
 ---
 

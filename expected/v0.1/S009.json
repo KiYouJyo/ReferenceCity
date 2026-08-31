@@ -1,0 +1,1 @@
+{"scenario_id":"RC:SCENARIO:S009","authorized":true,"accepted":true,"state_changed":false,"expected_state_version":1,"expected_error_code":null,"expected_audit_event":"VERIFY","expected_hash_match":true,"expected_spatial_conflicts":[],"notes":{"zh-Hans":"验证成功但不改变任何业务状态。","en":"Verification succeeds without changing business state.","ja":"検証は成功するが業務状態は変更しない。"}}

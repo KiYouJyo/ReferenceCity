@@ -1,0 +1,1 @@
+{"scenario_id":"RC:SCENARIO:S002","authorized":true,"accepted":true,"state_changed":true,"expected_state_version":2,"expected_error_code":null,"expected_audit_event":"AMEND","expected_hash_match":true,"expected_spatial_conflicts":[],"notes":{"zh-Hans":"有效规划进入调整并产生版本 2。","en":"The effective plan enters amendment and creates version 2.","ja":"有効計画が変更段階に入りバージョン2を生成する。"}}

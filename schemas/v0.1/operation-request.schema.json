@@ -1,23 +1,19 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/operation-request.schema.json",
-  "title": "ReferenceCity State-Changing Operation Request v0.1",
-  "type": "object",
-  "required": ["request_id", "actor_id", "operation", "target_id", "expected_version", "occurred_at", "related_document_ids", "payload", "payload_hash"],
-  "properties": {
-    "request_id": { "$ref": "common.schema.json#/$defs/stableId" },
-    "actor_id": { "$ref": "common.schema.json#/$defs/stableId" },
-    "operation": { "type": "string", "minLength": 1 },
-    "target_id": { "$ref": "common.schema.json#/$defs/stableId" },
-    "expected_version": { "type": "integer", "minimum": 1 },
-    "occurred_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
-    "related_document_ids": {
-      "type": "array",
-      "uniqueItems": true,
-      "items": { "$ref": "common.schema.json#/$defs/stableId" }
-    },
-    "payload": { "type": "object" },
-    "payload_hash": { "$ref": "common.schema.json#/$defs/contentHash" }
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/operation-request.schema.json",
+  "title":"ReferenceCity State-Changing Operation Request v0.1",
+  "type":"object",
+  "required":["request_id","actor_id","operation","target_id","expected_version","occurred_at","related_document_ids","payload","payload_hash"],
+  "properties":{
+    "request_id":{"$ref":"common.schema.json#/$defs/stableId"},
+    "actor_id":{"$ref":"common.schema.json#/$defs/stableId"},
+    "operation":{"type":"string","minLength":1},
+    "target_id":{"$ref":"common.schema.json#/$defs/stableId"},
+    "expected_version":{"anyOf":[{"type":"integer","minimum":1},{"type":"null"}]},
+    "occurred_at":{"$ref":"common.schema.json#/$defs/isoDateTime"},
+    "related_document_ids":{"type":"array","uniqueItems":true,"items":{"$ref":"common.schema.json#/$defs/stableId"}},
+    "payload":{"type":"object"},
+    "payload_hash":{"$ref":"common.schema.json#/$defs/contentHash"}
   },
-  "additionalProperties": false
+  "additionalProperties":false
 }

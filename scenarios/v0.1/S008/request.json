@@ -1,0 +1,1 @@
+{"request_id":"RC:REQUEST:S008","actor_id":"RC:ACTOR:003","operation":"ACTIVATE_PLAN","target_id":"RC:PLAN:0002","expected_version":1,"occurred_at":"2030-03-08T09:00:00+08:00","related_document_ids":["RC:DOC:000001"],"payload":{},"payload_hash":"sha256:44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"}

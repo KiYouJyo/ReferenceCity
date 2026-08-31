@@ -1,0 +1,1 @@
+{"request_id":"RC:REQUEST:S010","actor_id":"RC:ACTOR:001","operation":"OPEN_AMENDMENT","target_id":"RC:PLAN:0001","expected_version":1,"occurred_at":"2030-03-10T09:00:00+08:00","related_document_ids":[],"payload":{"new_version":3},"payload_hash":"sha256:849510a70761d9d7deb647663c697009ac9cc4eb9cc79d83ef2e37ebfc9a7574"}
