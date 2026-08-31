@@ -17,6 +17,7 @@ EXAMPLES = {
     "governance-organization.json": "governance.schema.json",
     "event.json": "event.schema.json",
     "scenario-s001.json": "scenario.schema.json",
+    "request-s001.json": "operation-request.schema.json",
     "expected-s001.json": "expected-result.schema.json",
     "manifest.json": "dataset-manifest.schema.json",
 }

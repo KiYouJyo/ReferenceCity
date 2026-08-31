@@ -6,18 +6,19 @@
     "ja": "正常な計画成果登録"
   },
   "description": {
-    "zh-Hans": "有权限的规划人员登记一个新的规划版本。",
-    "en": "An authorized planning actor registers a new plan version.",
-    "ja": "権限を持つ計画担当者が新しい計画バージョンを登録する。"
+    "zh-Hans": "有权限的规划人员登记一个新的规划对象。",
+    "en": "An authorized planning actor registers a new plan object.",
+    "ja": "権限を持つ計画担当者が新しい計画オブジェクトを登録する。"
   },
   "fixtures": ["spatial-object.json", "plan.json", "governance-organization.json"],
   "actions": [
     {
       "step": 1,
       "actor_id": "RC:ACTOR:001",
-      "operation": "REGISTER_PLAN",
-      "target_id": "RC:PLAN:0001",
+      "operation": "CREATE_PLAN",
+      "target_id": "RC:PLAN:0003",
       "occurred_at": "2030-01-02T09:00:00+08:00",
+      "request_ref": "examples/minimal/request-s001.json",
       "parameters": { "version": 1 }
     }
   ],
