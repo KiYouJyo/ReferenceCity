@@ -11,34 +11,29 @@
 - [x] 20 km × 20 km 合成城市、确定性生成器与 seed；
 - [x] 221 spatial + 65 planning objects；
 - [x] file SHA-256 + RFC 8785 canonical SHA-256；
-- [x] snapshot descriptor、GeoJSON preview、拓扑检查、CI artifact；
-- [x] `release-lock.json` 强制校验；
-- [ ] 人工 GIS 视觉审阅（不阻塞后续开发）。
+- [x] snapshot、GeoJSON preview、拓扑检查、CI artifact 与 release lock；
+- [ ] 人工 GIS 视觉审阅（非阻塞）。
 
 ### Phase 1C — 工程完成
 - [x] 5 个组织、6 类角色、6 actor、权限矩阵；
-- [x] 生命周期 Schema 与状态迁移；
-- [x] PlanningDocument / Approval / synthetic signature fixture；
-- [x] PlanningDocument RFC 8785 canonical Hash 校验；
-- [x] `expected_version` 乐观并发、request idempotency 与稳定错误码。
+- [x] 生命周期、PlanningDocument / Approval / signature fixture；
+- [x] canonical document Hash、乐观并发、幂等与稳定错误码。
 
-### Phase 1D — Benchmark Scenarios v0.1 — 已建立首版
-- [x] S001 正常规划成果登记；
-- [x] S002 合法版本更新；
-- [x] S003 正常审批并生效；
-- [x] S004 无权限主体修改；
-- [x] S005 已批准文档篡改；
-- [x] S006 规划约束冲突；
-- [x] S007 项目跨越受控边界；
-- [x] S008 缺少必要签名；
-- [x] S009 历史版本验证；
-- [x] S010 冲突更新；
-- [x] 每个场景具有 operation request 与机器可读 Ground Truth；
-- [x] CI 校验 scenario/request/expected Schema、步骤对应关系与 payload canonical Hash；
-- [ ] 建立实现无关的 benchmark runner / adapter contract。
+### Phase 1D — Benchmark Scenarios v0.1 — 完成首版
+- [x] S001–S010 scenario + operation request + Ground Truth；
+- [x] scenario/request/expected Schema 和 canonical payload Hash 自动验证；
+- [x] 正常、授权、审批、篡改、规划冲突、空间冲突、签名、历史和并发场景覆盖。
 
-### Phase 1E — Trust Chain 对接与回归
-下一步定义链适配器输入/输出协议，使任意实现只要实现 adapter contract 即可执行 S001–S010，并将 observed result 与 Ground Truth 自动比较。
+### Phase 1E — Trust Chain Adapter / Evaluator — 进行中
+- [x] `observed-result.schema.json`；
+- [x] 实现无关 adapter contract，中英日三语；
+- [x] 隔离 benchmark input builder；
+- [x] adapter 输入包物理排除 `expected/` Ground Truth；
+- [x] observed vs expected evaluator；
+- [x] evaluator self-test：10/10 正确输出 PASS，并能识别故意注入的 mismatch；
+- [ ] 对接实际国土空间可信链实现；
+- [ ] 由真实链运行 S001–S010 并产出 observed results；
+- [ ] 固定 ReferenceCity v1.0。
 
 ---
 

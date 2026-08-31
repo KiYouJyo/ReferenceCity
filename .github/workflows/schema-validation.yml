@@ -1,9 +1,9 @@
 name: ReferenceCity Validation
 on:
   push:
-    paths: ['schemas/**','examples/**','data/**','scenarios/**','expected/**','generators/**','tools/**','requirements-dev.txt','.github/workflows/schema-validation.yml']
+    paths: ['schemas/**','examples/**','data/**','scenarios/**','expected/**','adapter/**','generators/**','tools/**','requirements-dev.txt','.github/workflows/schema-validation.yml']
   pull_request:
-    paths: ['schemas/**','examples/**','data/**','scenarios/**','expected/**','generators/**','tools/**','requirements-dev.txt']
+    paths: ['schemas/**','examples/**','data/**','scenarios/**','expected/**','adapter/**','generators/**','tools/**','requirements-dev.txt']
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -20,6 +20,10 @@ jobs:
       - run: python tools/test_transaction_rules.py
       - run: python tools/test_document_hash.py
       - run: python tools/test_scenarios.py
+      - run: python tools/test_adapter_contract.py
       - run: python tools/build_snapshot.py --output build/core-v0.1
+      - run: python tools/build_benchmark_input.py --output build/benchmark-input-v0.1
       - uses: actions/upload-artifact@v4
         with: {name: referencecity-core-v0.1, path: build/core-v0.1, if-no-files-found: error}
+      - uses: actions/upload-artifact@v4
+        with: {name: referencecity-benchmark-input-v0.1, path: build/benchmark-input-v0.1, if-no-files-found: error}

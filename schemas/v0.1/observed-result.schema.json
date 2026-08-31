@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/observed-result.schema.json",
+  "title": "ReferenceCity Observed Benchmark Result v0.1",
+  "type": "object",
+  "required": [
+    "scenario_id",
+    "protocol_version",
+    "adapter",
+    "executed_at",
+    "authorized",
+    "accepted",
+    "state_changed",
+    "state_version",
+    "error_code",
+    "audit_events",
+    "hash_match",
+    "spatial_conflicts"
+  ],
+  "properties": {
+    "scenario_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "protocol_version": { "const": "0.1" },
+    "adapter": {
+      "type": "object",
+      "required": ["name", "version", "implementation"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "implementation": { "type": "string", "minLength": 1 },
+        "commit": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "executed_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "authorized": { "type": "boolean" },
+    "accepted": { "type": "boolean" },
+    "state_changed": { "type": "boolean" },
+    "state_version": { "type": ["integer", "null"], "minimum": 1 },
+    "error_code": { "type": ["string", "null"] },
+    "audit_events": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "hash_match": { "type": ["boolean", "null"] },
+    "spatial_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conflict_type", "target_id", "constraint_id"],
+        "properties": {
+          "conflict_type": { "type": "string" },
+          "target_id": { "$ref": "common.schema.json#/$defs/stableId" },
+          "constraint_id": { "$ref": "common.schema.json#/$defs/stableId" },
+          "severity": { "enum": ["INFO", "WARNING", "ERROR"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "transaction_id": { "type": ["string", "null"] },
+        "state_proof": { "type": ["string", "null"] },
+        "log_ref": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
