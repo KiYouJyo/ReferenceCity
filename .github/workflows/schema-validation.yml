@@ -1,0 +1,27 @@
+name: Schema Validation
+
+on:
+  push:
+    paths:
+      - 'schemas/**'
+      - 'examples/**'
+      - 'tools/validate_schemas.py'
+      - 'requirements-dev.txt'
+      - '.github/workflows/schema-validation.yml'
+  pull_request:
+    paths:
+      - 'schemas/**'
+      - 'examples/**'
+      - 'tools/validate_schemas.py'
+      - 'requirements-dev.txt'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: python tools/validate_schemas.py

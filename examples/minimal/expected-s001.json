@@ -1,0 +1,16 @@
+{
+  "scenario_id": "RC:SCENARIO:S001",
+  "authorized": true,
+  "accepted": true,
+  "state_changed": true,
+  "expected_state_version": 1,
+  "expected_error_code": null,
+  "expected_audit_event": "CREATE",
+  "expected_hash_match": true,
+  "expected_spatial_conflicts": [],
+  "notes": {
+    "zh-Hans": "这是最小正常路径 Ground Truth。",
+    "en": "This is the minimal happy-path ground truth.",
+    "ja": "最小正常系のグラウンドトゥルースである。"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "RC:CONTROL:0001",
+  "planning_object_type": "development_control",
+  "name": {
+    "zh-Hans": "测试地块开发控制",
+    "en": "Test Parcel Development Control",
+    "ja": "テスト街区開発コントロール"
+  },
+  "plan_id": "RC:PLAN:0001",
+  "status": "EFFECTIVE",
+  "version": 1,
+  "valid_from": "2030-01-01T00:00:00+08:00",
+  "valid_to": null,
+  "target_ids": ["RC:PARCEL:000001"],
+  "constraint_code": null,
+  "controls": {
+    "planned_land_use": "R2",
+    "far_max": 2.0,
+    "building_height_max_m": 45,
+    "building_density_max": 0.3,
+    "green_ratio_min": 0.35
+  },
+  "content_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "provenance": {
+    "source_type": "SYNTHETIC",
+    "source_ref": "ReferenceCity manual fixture",
+    "sensitivity": "SYNTHETIC_SAFE",
+    "generated_by": null,
+    "random_seed": null,
+    "notes": null
+  }
+}

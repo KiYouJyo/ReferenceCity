@@ -1,0 +1,11 @@
+{
+  "id": "RC:ORG:001",
+  "entity_type": "organization",
+  "name": {
+    "zh-Hans": "示范市自然资源主管部门",
+    "en": "Reference City Natural Resources Authority",
+    "ja": "リファレンスシティ自然資源主管部門"
+  },
+  "organization_type": "municipal_natural_resources_authority",
+  "metadata": { "synthetic": true }
+}

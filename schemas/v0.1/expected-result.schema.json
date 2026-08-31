@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/expected-result.schema.json",
+  "title": "ReferenceCity Ground Truth Result v0.1",
+  "type": "object",
+  "required": ["scenario_id", "authorized", "accepted", "state_changed", "expected_state_version", "expected_error_code", "expected_audit_event", "expected_hash_match", "expected_spatial_conflicts"],
+  "properties": {
+    "scenario_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "authorized": { "type": "boolean" },
+    "accepted": { "type": "boolean" },
+    "state_changed": { "type": "boolean" },
+    "expected_state_version": { "type": ["integer", "null"], "minimum": 1 },
+    "expected_error_code": { "type": ["string", "null"] },
+    "expected_audit_event": { "type": ["string", "null"] },
+    "expected_hash_match": { "type": ["boolean", "null"] },
+    "expected_spatial_conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["conflict_type", "target_id", "constraint_id"],
+        "properties": {
+          "conflict_type": { "type": "string" },
+          "target_id": { "$ref": "common.schema.json#/$defs/stableId" },
+          "constraint_id": { "$ref": "common.schema.json#/$defs/stableId" },
+          "severity": { "enum": ["INFO", "WARNING", "ERROR"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "notes": { "$ref": "common.schema.json#/$defs/localizedText" }
+  },
+  "additionalProperties": false
+}

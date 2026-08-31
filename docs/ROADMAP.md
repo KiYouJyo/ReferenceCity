@@ -11,10 +11,11 @@
 - [x] 三语项目主页；
 - [x] 明确与 UrbanPlanningLab 的职责边界；
 - [x] 定义核心数据域和场景思想；
-- [ ] 建立 Spatial / Planning / Governance / Event / Ground Truth Schema v0.1；
-- [ ] 建立稳定 ID 规则；
-- [ ] 定义坐标参考、单位、日期时间和版本规则；
-- [ ] 建立数据 provenance / sensitivity manifest。
+- [x] 建立 Spatial / Planning / Governance / Event / Ground Truth Schema v0.1；
+- [x] 建立稳定 ID 规则；
+- [x] 定义坐标参考、单位、日期时间和版本规则；
+- [x] 建立数据 provenance / sensitivity manifest；
+- [x] 建立最小机器可读示例与自动 Schema 校验。
 
 ### Phase 1B：核心小城市 v0.1
 

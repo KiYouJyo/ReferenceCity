@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/common.schema.json",
+  "title": "ReferenceCity Common Types v0.1",
+  "type": "object",
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^RC:[A-Z][A-Z0-9_-]*:[A-Z0-9][A-Z0-9_-]*$"
+    },
+    "objectVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "isoDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nullableDateTime": {
+      "anyOf": [
+        { "$ref": "#/$defs/isoDateTime" },
+        { "type": "null" }
+      ]
+    },
+    "contentHash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "sourceType": {
+      "enum": ["SYNTHETIC", "PUBLIC_REAL", "DERIVED", "MANUAL_ANNOTATION"]
+    },
+    "sensitivity": {
+      "enum": ["OPEN", "SYNTHETIC_SAFE", "REVIEW_REQUIRED", "DO_NOT_COMMIT"]
+    },
+    "localizedText": {
+      "type": "object",
+      "required": ["zh-Hans", "en", "ja"],
+      "properties": {
+        "zh-Hans": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 },
+        "ja": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["source_type", "source_ref", "sensitivity"],
+      "properties": {
+        "source_type": { "$ref": "#/$defs/sourceType" },
+        "source_ref": { "type": "string", "minLength": 1 },
+        "sensitivity": { "$ref": "#/$defs/sensitivity" },
+        "generated_by": { "type": ["string", "null"] },
+        "random_seed": { "type": ["integer", "null"] },
+        "notes": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "geojsonGeometry": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "enum": ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection"]
+        },
+        "coordinates": { "type": "array" },
+        "geometries": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/geojsonGeometry" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "GeometryCollection" } } },
+          "then": { "required": ["geometries"] },
+          "else": { "required": ["coordinates"] }
+        }
+      ],
+      "additionalProperties": false
+    }
+  }
+}

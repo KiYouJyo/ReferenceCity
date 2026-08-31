@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/governance.schema.json",
+  "title": "ReferenceCity Governance Entity v0.1",
+  "type": "object",
+  "required": ["id", "entity_type"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "entity_type": { "enum": ["organization", "actor", "role", "permission", "planning_document", "approval"] },
+    "name": { "$ref": "common.schema.json#/$defs/localizedText" },
+    "organization_type": { "type": "string" },
+    "organization_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "role_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "operation": { "type": "string" },
+    "resource_type": { "type": "string" },
+    "scope_ids": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/stableId" }, "uniqueItems": true },
+    "document_type": { "type": "string" },
+    "document_status": { "enum": ["DRAFT", "SUBMITTED", "APPROVED", "REJECTED", "SUPERSEDED", "WITHDRAWN"] },
+    "content_hash": { "$ref": "common.schema.json#/$defs/contentHash" },
+    "document_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "approver_actor_id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "decision": { "enum": ["APPROVE", "REJECT", "RETURN"] },
+    "decided_at": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "signature_hash": { "$ref": "common.schema.json#/$defs/contentHash" },
+    "metadata": { "type": "object" }
+  },
+  "allOf": [
+    { "if": { "properties": { "entity_type": { "const": "organization" } } }, "then": { "required": ["name", "organization_type"] } },
+    { "if": { "properties": { "entity_type": { "const": "actor" } } }, "then": { "required": ["name", "organization_id", "role_id"] } },
+    { "if": { "properties": { "entity_type": { "const": "role" } } }, "then": { "required": ["name"] } },
+    { "if": { "properties": { "entity_type": { "const": "permission" } } }, "then": { "required": ["role_id", "operation", "resource_type", "scope_ids"] } },
+    { "if": { "properties": { "entity_type": { "const": "planning_document" } } }, "then": { "required": ["document_type", "document_status", "content_hash"] } },
+    { "if": { "properties": { "entity_type": { "const": "approval" } } }, "then": { "required": ["document_id", "approver_actor_id", "decision", "decided_at", "signature_hash"] } }
+  ],
+  "additionalProperties": false
+}

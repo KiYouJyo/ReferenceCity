@@ -1,0 +1,26 @@
+{
+  "scenario_id": "RC:SCENARIO:S001",
+  "title": {
+    "zh-Hans": "正常规划成果登记",
+    "en": "Valid planning result registration",
+    "ja": "正常な計画成果登録"
+  },
+  "description": {
+    "zh-Hans": "有权限的规划人员登记一个新的规划版本。",
+    "en": "An authorized planning actor registers a new plan version.",
+    "ja": "権限を持つ計画担当者が新しい計画バージョンを登録する。"
+  },
+  "fixtures": ["spatial-object.json", "plan.json", "governance-organization.json"],
+  "actions": [
+    {
+      "step": 1,
+      "actor_id": "RC:ACTOR:001",
+      "operation": "REGISTER_PLAN",
+      "target_id": "RC:PLAN:0001",
+      "occurred_at": "2030-01-02T09:00:00+08:00",
+      "parameters": { "version": 1 }
+    }
+  ],
+  "expected_result_ref": "expected-s001.json",
+  "tags": ["registration", "happy-path"]
+}

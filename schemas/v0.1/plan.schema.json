@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/KiYouJyo/ReferenceCity/main/schemas/v0.1/plan.schema.json",
+  "title": "ReferenceCity Planning State v0.1",
+  "type": "object",
+  "required": ["id", "planning_object_type", "status", "version", "valid_from", "provenance"],
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/stableId" },
+    "planning_object_type": {
+      "enum": ["plan", "plan_version", "land_use_control", "development_control", "controlled_boundary", "planning_constraint"]
+    },
+    "name": { "$ref": "common.schema.json#/$defs/localizedText" },
+    "plan_id": {
+      "anyOf": [
+        { "$ref": "common.schema.json#/$defs/stableId" },
+        { "type": "null" }
+      ]
+    },
+    "status": {
+      "enum": ["DRAFT", "SUBMITTED", "REVIEWED", "APPROVED", "EFFECTIVE", "AMENDMENT", "SUPERSEDED", "WITHDRAWN", "REJECTED"]
+    },
+    "version": { "$ref": "common.schema.json#/$defs/objectVersion" },
+    "valid_from": { "$ref": "common.schema.json#/$defs/isoDateTime" },
+    "valid_to": { "$ref": "common.schema.json#/$defs/nullableDateTime" },
+    "target_ids": {
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/stableId" },
+      "uniqueItems": true
+    },
+    "boundary_geometry": { "$ref": "common.schema.json#/$defs/geojsonGeometry" },
+    "constraint_code": { "type": ["string", "null"] },
+    "controls": {
+      "type": "object",
+      "properties": {
+        "planned_land_use": { "type": ["string", "null"] },
+        "far_max": { "type": ["number", "null"], "minimum": 0 },
+        "building_height_max_m": { "type": ["number", "null"], "minimum": 0 },
+        "building_density_max": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "green_ratio_min": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "content_hash": { "$ref": "common.schema.json#/$defs/contentHash" },
+    "provenance": { "$ref": "common.schema.json#/$defs/provenance" }
+  },
+  "additionalProperties": false
+}

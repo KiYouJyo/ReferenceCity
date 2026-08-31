@@ -1,0 +1,17 @@
+{
+  "event_id": "RC:EVENT:000001",
+  "event_type": "CREATE",
+  "actor_id": "RC:ACTOR:001",
+  "target_id": "RC:PLAN:0001",
+  "occurred_at": "2030-01-02T09:00:00+08:00",
+  "recorded_at": "2030-01-02T09:00:01+08:00",
+  "previous_version": null,
+  "resulting_version": 1,
+  "authorized": true,
+  "accepted": true,
+  "state_changed": true,
+  "authority_basis": "RC:PERMISSION:001",
+  "related_document_ids": [],
+  "payload": { "operation": "register_plan" },
+  "payload_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

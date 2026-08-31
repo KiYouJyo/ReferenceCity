@@ -1,0 +1,27 @@
+{
+  "id": "RC:PARCEL:000001",
+  "object_type": "parcel",
+  "name": {
+    "zh-Hans": "测试地块 1",
+    "en": "Test Parcel 1",
+    "ja": "テスト街区 1"
+  },
+  "parent_id": "RC:DISTRICT:001",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[0, 0], [100, 0], [100, 80], [0, 80], [0, 0]]]
+  },
+  "version": 1,
+  "valid_from": "2030-01-01T00:00:00+08:00",
+  "valid_to": null,
+  "area_m2": 8000,
+  "properties": { "current_land_use": "residential" },
+  "provenance": {
+    "source_type": "SYNTHETIC",
+    "source_ref": "ReferenceCity generator",
+    "sensitivity": "SYNTHETIC_SAFE",
+    "generated_by": "phase1a-minimal-example",
+    "random_seed": 20260901,
+    "notes": null
+  }
+}

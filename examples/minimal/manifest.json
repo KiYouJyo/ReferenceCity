@@ -1,0 +1,29 @@
+{
+  "dataset_id": "RC:DATASET:MINIMAL01",
+  "title": {
+    "zh-Hans": "ReferenceCity Phase 1A 最小示例",
+    "en": "ReferenceCity Phase 1A Minimal Example",
+    "ja": "ReferenceCity Phase 1A 最小サンプル"
+  },
+  "dataset_version": "0.1.0",
+  "generated_at": "2030-01-01T00:00:00+08:00",
+  "random_seed": 20260901,
+  "crs": {
+    "kind": "SYNTHETIC_CARTESIAN",
+    "identifier": "RC-SYNTHETIC-1",
+    "description": "Synthetic Cartesian plane in metres"
+  },
+  "units": {
+    "length": "m",
+    "area": "m2",
+    "ratio": "decimal"
+  },
+  "assets": [
+    {
+      "path": "spatial-object.json",
+      "source_type": "SYNTHETIC",
+      "sensitivity": "SYNTHETIC_SAFE",
+      "source_ref": "Phase 1A fixture"
+    }
+  ]
+}
